@@ -58,8 +58,7 @@ const userOrders = async (req, res) => {
 const listOrders = async (req, res) => {
     try {
         const orders = await orderModel.find({});
-        const order = orders.filter((order) => {return order.payment === true});
-        res.json({ success: true, data: order })
+        res.json({ success: true, data: orders })
     } catch (error) {
         console.log(error)
         res.json({ success: false, message: "Error in fetching orders" })
