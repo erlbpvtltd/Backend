@@ -75,4 +75,14 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export {placeOrder, verifyOrder, userOrders, listOrders, updateStatus}
+const updatePayment = async (req, res) => {
+    try {
+        await orderModel.findByIdAndUpdate(req.body.id, { payment:req.body.payment})
+        res.json({ success: true, message: 'Payment updated successfully' })
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: 'Error in updating Payment' })
+    }
+}
+
+export {placeOrder, verifyOrder, userOrders, listOrders, updateStatus, updatePayment}
